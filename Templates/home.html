@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body {
+        
+            background-image: url('https://www.digitalocean.com/api/static-content/v1/images?src=https%3A%2F%2Fdoimages.nyc3.cdn.digitaloceanspaces.com%2Fbg-customers.jpg&width=2048');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1{
+            text-align: center;
+            color: whitesmoke;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            font-size: 70px;
+            
+        }
+
+        .input-container {
+            /* position: relative; */
+            width: 800px;
+            margin: auto;
+            flex-direction: row;
+            margin-left: 22%;          
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 15px 10px;
+            border-radius: 3%;  
+            border: 2px solid #ccc;
+            font-size: 18px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);  
+            
+            
+        }
+
+        button {
+            /* position: absolute; */
+            top: 0;
+            height: 90%;
+            padding: 15px 30px;
+            border-color: #28a745;
+            border-radius: 3%;
+            background-color: #28a745;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 5px;
+            
+        }
+
+        button:hover{
+            background-color: #cf7e1c;
+            color: black;
+        }
+
+        .feedback-message{
+            
+            padding-left: 22%;
+            padding-right: 25%;
+            margin-top: 20px;
+            color: whitesmoke;
+            font-size: 18px;
+            text-align: justify;
+            line-height: 1.4;
+
+        }
+
+        
+    </style>
+
+</head>
+<body>
+    <div class="Predict">
+        <h1> AI-Powered <br> Real-Time Feedback Decoder </h1>
+
+
+        <div class="input-container"> 
+            <form action="{{ url_for('predict') }}" method="post">
+                <input type="text" name="Feedback" placeholder="Enter Feedback" required="required">
+                <button type="submit">Predict</button>
+            </form>
+        </div>
+
+        {% if prediction_text %}
+            <p class="feedback-message">{{ prediction_text | safe }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
